@@ -87,7 +87,9 @@ function generateState() {
 function requireAuth(req, res, next) {
   if (AUTH_MODE !== 'pkce') return next();
   if (req.session.accessToken) return next();
-  req.session.returnTo = req.originalUrl;
+  // Don't save static asset paths as returnTo — always go back to root after login
+  const isAsset = /\.(ico|png|jpg|jpeg|gif|svg|css|js|woff|woff2)$/i.test(req.path);
+  req.session.returnTo = isAsset ? '/' : req.originalUrl;
   res.redirect('/login');
 }
 
@@ -257,6 +259,9 @@ app.post('/api/chat', requireAuth, async (req, res) => {
     res.status(status).json({ error: message });
   }
 });
+
+// Ignore favicon requests gracefully
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // ── STATIC FILES ──────────────────────────────────────────────────────────────
 app.get('/', (req, res) => {
