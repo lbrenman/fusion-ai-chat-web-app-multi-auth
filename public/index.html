@@ -44,24 +44,19 @@
 
     /* Hide everything except the header when collapsed */
     #sidebar.collapsed #new-chat-btn,
-    #sidebar.collapsed #conversations-label,
+    #sidebar.collapsed #conversations-header,
     #sidebar.collapsed #conversations-list,
     #sidebar.collapsed #user-panel,
     #sidebar.collapsed #sidebar-footer {
       display: none;
     }
 
-    #sidebar.collapsed #sidebar-header {
-      justify-content: center;
-      padding: 20px 10px 14px;
-    }
-
     #sidebar.collapsed .logo-text { display: none; }
-    #sidebar.collapsed #collapse-btn { margin-left: 0; }
 
     #sidebar-header {
       padding: 20px 16px 14px; border-bottom: 1px solid var(--border);
       display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0;
     }
 
     .logo {
@@ -127,6 +122,17 @@
       transition: color 0.15s, background 0.15s; flex-shrink: 0;
     }
     #collapse-btn:hover { color: var(--text); background: var(--surface2); }
+
+    /* In collapsed state, header becomes a vertical stack */
+    #sidebar.collapsed #sidebar-header {
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    #sidebar.collapsed #collapse-btn {
+      margin-left: 0;
+    }
 
     /* Conversations section header with clear button */
     #conversations-header {
