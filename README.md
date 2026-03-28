@@ -2,6 +2,8 @@
 
 A unified AI chat web app with conversation management that supports three authentication modes, controlled by a single environment variable.
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/lbrenman/fusion-ai-chat-web-app-multi-auth)
+
 ## Auth Modes
 
 | `AUTH_MODE` | Description |
